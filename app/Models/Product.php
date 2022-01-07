@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    public function size() {
+        $this->belongsTo(Size::class);
+    }
+
+    public function brand() {
+        $this->belongsTo(Brend::class);
+    }
+
 }

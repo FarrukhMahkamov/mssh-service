@@ -13,9 +13,16 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->foreignId('category_id');
+            $table->foreignId('delivery_id');
+            $table->text('image');
             $table->timestamps();
+
         });
     }
 
