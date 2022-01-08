@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 // middleware('auth:sanctum')
 Route::prefix('v1')->group(function(){
-
+    
+    // This is global route for products
     Route::apiResource('products', ProductController::class);
 
 });
