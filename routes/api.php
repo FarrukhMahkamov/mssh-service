@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ Route::prefix('v1')->group(function(){
     // This is global route for products
     Route::apiResource('products', ProductController::class);
     Route::apiResource('size', SizeController::class);
-
+    Route::apiResource('delivery', DeliveryController::class);
 
 });
 

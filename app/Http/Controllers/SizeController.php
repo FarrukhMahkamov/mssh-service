@@ -15,8 +15,7 @@ class SizeController extends Controller
      */
     public function index()
     {
-        return SizeResource::collection(Size::class);
-        
+        return SizeResource::collection(Size::all());
     }
 
     /**
@@ -29,7 +28,7 @@ class SizeController extends Controller
     {
         $faker = \Faker\Factory::create(1);
 
-        $product = Size::create([
+        $size = Size::create([
             'name' => $faker->name(),
             'slug' => $faker->slug(),
         ]);

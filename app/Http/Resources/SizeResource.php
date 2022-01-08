@@ -17,10 +17,12 @@ class SizeResource extends JsonResource
         return [
             'id' => $this->id,
             'type' => 'Size',
+
             'attributes' => [
                 'name' => $this->name,
                 'slug' => $this->slug,
             ]
+
         ];
     }
 }
