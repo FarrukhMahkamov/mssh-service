@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return ProductResource::collection(Product::all());
     }
 
     /**
@@ -21,9 +23,22 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $product)
     {
-        //
+        $faker = \Faker\Factory::create(2);
+
+        $product = Product::create([
+            'name' => $faker->name(),
+            'slug' => $faker->slug(),
+            'brand_id' => $faker->randomDigit(),
+            'size_id' => $faker->randomDigit(),
+            'block_count' => $faker->randomDigit(),
+            'image' => $faker->imageUrl($width  = 60, $heght = 60),
+            'first_price' => $faker->randomDigit(),
+            'second_price' => $faker->randomDigit(),
+        ]);
+
+        return new ProductResource($product);
     }
 
     /**
