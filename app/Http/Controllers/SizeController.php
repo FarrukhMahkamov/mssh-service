@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SizeResource;
 use App\Models\Size;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,8 @@ class SizeController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return SizeResource::collection(Size::class);
+        
     }
 
     /**
@@ -33,29 +25,25 @@ class SizeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Size $size)
     {
-        //
+        $faker = \Faker\Factory::create(1);
+
+        $product = Size::create([
+            'name' => $faker->name(),
+            'slug' => $faker->slug(),
+        ]);
+
+        return new SizeResource($size);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Size  $size
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Size $size)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Size $size)
+    public function show($id)
     {
         //
     }
@@ -64,10 +52,10 @@ class SizeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Size  $size
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Size $size)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +63,10 @@ class SizeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Size  $size
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Size $size)
+    public function destroy($id)
     {
         //
     }

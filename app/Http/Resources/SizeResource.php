@@ -14,6 +14,13 @@ class SizeResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'type' => 'Size',
+            'attributes' => [
+                'name' => $this->name,
+                'slug' => $this->slug,
+            ]
+        ];
     }
 }

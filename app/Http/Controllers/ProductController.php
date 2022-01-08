@@ -25,6 +25,17 @@ class ProductController extends Controller
      */
     public function create(Product $product)
     {
+       
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, Product $product)
+    {
         $faker = \Faker\Factory::create(2);
 
         $product = Product::create([
@@ -39,17 +50,6 @@ class ProductController extends Controller
         ]);
 
         return new ProductResource($product);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
