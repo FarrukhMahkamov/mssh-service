@@ -9,6 +9,12 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'image',
+    ];
+
     public function category() {
         $this->hasMany(Brand::class);
     }
