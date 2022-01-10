@@ -13,9 +13,9 @@ class DeliveryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Delivery $delivery)
     {
-        
+        return DeliveryResource::collection(Delivery::all());
     }
 
     /**
@@ -29,14 +29,12 @@ class DeliveryController extends Controller
         $faker = \Faker\Factory::create(2);
 
         $delivery = Delivery::create([
-            'name' => $faker->name(),
-            'slug' => $faker->slug(),
-            'brand_id' => $faker->randomDigit(),
-            'size_id' => $faker->randomDigit(),
-            'block_count' => $faker->randomDigit(),
-            'image' => $faker->imageUrl($width  = 60, $heght = 60),
-            'first_price' => $faker->randomDigit(),
-            'second_price' => $faker->randomDigit(),
+            'username' => $faker->name(),
+            'username_slug' => $faker->slug(),
+            'user_phone_number' => $faker->randomDigit(),
+            'boss_name' => $faker->name(),
+            'boss_name_slug' => $faker->name(),
+            'boss_phone_number' => 998915,
         ]);
 
         return new DeliveryResource($delivery);
@@ -48,9 +46,9 @@ class DeliveryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Delivery $delivery)
     {
-        //
+        return new DeliveryResource($delivery);
     }
 
     /**
@@ -60,9 +58,18 @@ class DeliveryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Delivery $delivery)
     {
-        //
+        $delivery->update([
+            'username' => $request->input('username'),
+            'username_slug' => $request->input('username_slug'),
+            'user_phone_number' => $request->input('user_phone_number'),
+            'boss_name' => $request->input('boss_name'),
+            'boss_name_slug' => $request->input('boss_name_slug'),
+            'boss_phone_number' => $request->input('boss_phone_number'),
+        ]);
+
+        return new DeliveryResource($delivery);
     }
 
     /**
@@ -71,8 +78,9 @@ class DeliveryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Delivery $delivery)
     {
-        //
+        $delivery->delete();
+        return response(null,204);
     }
 }

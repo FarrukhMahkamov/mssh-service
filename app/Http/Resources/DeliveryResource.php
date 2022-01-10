@@ -16,10 +16,10 @@ class DeliveryResource extends JsonResource
     {
         return [
             'id' => (string)$this->id,
-            'type' => 'Deliveries',
+            'type' => 'Delivery',
             'attributes' => [
                 'username' => $this->username,
-                'username_slug' => $this->username_sluglug,
+                'username_slug' => $this->username_slug,
                 'boss_name' => $this->boss_name,
                 'boss_name_slug' => $this->boss_name_slug,
                 'boss_phone_number' => $this->boss_phone_number,
