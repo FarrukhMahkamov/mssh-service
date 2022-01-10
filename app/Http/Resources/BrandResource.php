@@ -20,15 +20,13 @@ class BrandResource extends JsonResource
             'attributes' => [
                 'name' => $this->name,
                 'slug' => $this->slug,
+                'category_id'=>$this->category_id,
+                'delivery_id'=>$this->delivery_id,
+                'image'=>$this->image,
            
             ]
 
         ];
-        // $table->string('name');
-        // $table->string('slug');
-        // $table->foreignId('category_id');
-        // $table->foreignId('delivery_id');
-        // $table->text('image');
-        // $table->timestamps();
+    
     }
 }
