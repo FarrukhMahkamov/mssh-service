@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brands;
 use Illuminate\Http\Request;
 
-class BrandsController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +12,6 @@ class BrandsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -41,21 +30,10 @@ class BrandsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Brands  $brands
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Brands $brands)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Brands  $brands
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Brands $brands)
+    public function show($id)
     {
         //
     }
@@ -64,10 +42,10 @@ class BrandsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Brands  $brands
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brands $brands)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +53,10 @@ class BrandsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Brands  $brands
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brands $brands)
+    public function destroy($id)
     {
         //
     }
