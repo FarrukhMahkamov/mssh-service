@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BrandResource;
+use App\Models\Brands;
+use Faker\Factory;
 use Illuminate\Http\Request;
-
 class BrandController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+      return BrandResource::collection(Brands::all());
     }
 
     /**
@@ -22,9 +24,18 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Brands $brands)
     {
-        //
+        $faker = Factory::create();
+
+        $brands = Brands::create([
+            'name'  =>$faker -> name(),
+            'slug'  =>$faker -> slug(),
+            'image' =>$faker -> imageUrl($width = 60, $height = 60),
+            'category_id' => $faker -> randomDigit(),
+            'delivery_id' => $faker -> randomDigit(),
+        ]);
+        return new BrandResource($brands);
     }
 
     /**
@@ -33,9 +44,10 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Brands $brands)
     {
-        //
+        return new BrandResource($brands);
+        
     }
 
     /**
@@ -45,9 +57,14 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Brands $brands)
     {
-        //
+        $brands -> update([
+            'name'  => $request -> input('name'),
+            'slug'  => $request -> unput('slug'),
+            'image' => $request  -> input('image'),
+        ]);
+        return new BrandResource($brands);
     }
 
     /**
@@ -56,8 +73,10 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Brands $brands)
     {
-        //
+        $brands -> delete();
+
+        return response(null,404);
     }
 }

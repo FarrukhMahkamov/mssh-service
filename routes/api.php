@@ -13,6 +13,7 @@ Route::prefix('v1')->group(function(){
     Route::apiResource('size', SizeController::class);
     
     Route::apiResource('delivery', DeliveryController::class);
+    
     Route::apiResource('brand',BrandController::class);
 
 });
