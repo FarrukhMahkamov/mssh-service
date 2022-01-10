@@ -21,7 +21,9 @@ Route::prefix('v1')->group(function(){
     
     // This is global route for products
     Route::apiResource('products', ProductController::class);
+
     Route::apiResource('size', SizeController::class);
+    
     Route::apiResource('delivery', DeliveryController::class);
 
 });
