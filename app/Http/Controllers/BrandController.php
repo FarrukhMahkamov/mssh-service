@@ -63,8 +63,10 @@ class BrandController extends Controller
             'name'  => $request -> input('name'),
             'slug'  => $request -> unput('slug'),
             'image' => $request  -> input('image'),
+            'category_id' => $request  -> input('category_id'),
+            'delivery_id' => $request  -> input('delivery_id'),
         ]);
-        return new BrandResource($brands);
+        return new BrandResource($brand);
     }
 
     /**
