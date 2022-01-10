@@ -18,15 +18,6 @@ class ProductController extends Controller
         return ProductResource::collection(Product::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Product $product)
-    {
-       
-    }
 
     /**
      * Store a newly created resource in storage.
