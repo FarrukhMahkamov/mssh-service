@@ -26,12 +26,12 @@ class BrandController extends Controller
      */
     public function store(Request $request, Brand $brand)
     {
-        $faker = Factory::create();
+        $faker = Factory::create(1);
 
         $brand = Brand::create([
-            'name'  =>$faker -> name(),
-            'slug'  =>$faker -> slug(),
-            'image' =>$faker -> imageUrl($width = 60, $height = 60),
+            'name'  => $faker -> name(),
+            'slug'  => $faker -> slug(),
+            'image' => $faker -> imageUrl($width = 60, $height = 60),
             'category_id' => $faker -> randomDigit(),
             'delivery_id' => $faker -> randomDigit(),
         ]);
