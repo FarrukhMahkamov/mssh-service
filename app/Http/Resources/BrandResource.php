@@ -14,6 +14,21 @@ class BrandResource extends JsonResource
      */
     public function toArray($request)
     {
-       return 
+        return [
+            'id' => $this->id,
+            'type' => 'Brand',
+            'attributes' => [
+                'name' => $this->name,
+                'slug' => $this->slug,
+           
+            ]
+
+        ];
+        // $table->string('name');
+        // $table->string('slug');
+        // $table->foreignId('category_id');
+        // $table->foreignId('delivery_id');
+        // $table->text('image');
+        // $table->timestamps();
     }
 }
