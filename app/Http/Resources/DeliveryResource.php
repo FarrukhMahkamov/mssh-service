@@ -14,6 +14,16 @@ class DeliveryResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => (string)$this->id,
+            'type' => 'Deliveries',
+            'attributes' => [
+                'username' => $this->username,
+                'username_slug' => $this->username_sluglug,
+                'boss_name' => $this->boss_name,
+                'boss_name_slug' => $this->boss_name_slug,
+                'boss_phone_number' => $this->boss_phone_number,
+            ]
+        ];
     }
 }

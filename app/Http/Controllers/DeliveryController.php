@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DeliveryResource;
 use App\Models\Delivery;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,7 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        
     }
 
     /**
@@ -33,29 +24,31 @@ class DeliveryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Delivery $delivery)
     {
-        //
+        $faker = \Faker\Factory::create(2);
+
+        $delivery = Delivery::create([
+            'name' => $faker->name(),
+            'slug' => $faker->slug(),
+            'brand_id' => $faker->randomDigit(),
+            'size_id' => $faker->randomDigit(),
+            'block_count' => $faker->randomDigit(),
+            'image' => $faker->imageUrl($width  = 60, $heght = 60),
+            'first_price' => $faker->randomDigit(),
+            'second_price' => $faker->randomDigit(),
+        ]);
+
+        return new DeliveryResource($delivery);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Delivery  $delivery
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Delivery $delivery)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Delivery  $delivery
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Delivery $delivery)
+    public function show($id)
     {
         //
     }
@@ -64,10 +57,10 @@ class DeliveryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Delivery  $delivery
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Delivery $delivery)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +68,10 @@ class DeliveryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Delivery  $delivery
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Delivery $delivery)
+    public function destroy($id)
     {
         //
     }
