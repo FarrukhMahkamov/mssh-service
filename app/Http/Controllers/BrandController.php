@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BrandResource;
-use App\Models\Brands;
+use App\Models\Brand;
 use Faker\Factory;
 use Illuminate\Http\Request;
 class BrandController extends Controller
@@ -15,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-      return BrandResource::collection(Brands::all());
+      return BrandResource::collection(Brand::all());
     }
 
     /**
@@ -24,18 +24,18 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Brands $brands)
+    public function store(Request $request, Brand $brand)
     {
         $faker = Factory::create();
 
-        $brands = Brands::create([
+        $brand = Brand::create([
             'name'  =>$faker -> name(),
             'slug'  =>$faker -> slug(),
             'image' =>$faker -> imageUrl($width = 60, $height = 60),
             'category_id' => $faker -> randomDigit(),
             'delivery_id' => $faker -> randomDigit(),
         ]);
-        return new BrandResource($brands);
+        return new BrandResource($brand);
     }
 
     /**
@@ -44,9 +44,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Brands $brands)
+    public function show(Brand $brand)
     {
-        return new BrandResource($brands);
+        return new BrandResource($brand);
         
     }
 
@@ -57,9 +57,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Brands $brands)
+    public function update(Request $request,Brand $brand)
     {
-        $brands -> update([
+        $brand -> update([
             'name'  => $request -> input('name'),
             'slug'  => $request -> unput('slug'),
             'image' => $request  -> input('image'),
@@ -73,9 +73,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brands $brands)
+    public function destroy(Brand $brand)
     {
-        $brands -> delete();
+        $brand -> delete();
 
         return response(null,404);
     }
