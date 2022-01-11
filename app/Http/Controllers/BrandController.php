@@ -79,6 +79,6 @@ class BrandController extends Controller
     {
         $brand -> delete();
 
-        return response(null,404);
+        return response(null,204);
     }
 }
