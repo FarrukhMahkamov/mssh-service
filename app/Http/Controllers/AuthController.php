@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -38,28 +39,31 @@ class AuthController extends Controller
 
         return  $response = [
             'user'=>$user,
-            'toke'=>$token
+            'token'=>$token
         ];
 
     }
 
-
-    public function loginUser(Request $request, User $user) {
+    public function loginUser(Request $request) {
         
-            $loginFields = $request->validate([
-                'email' => 'required|string|email|',
-                'password' => 'required|string|min:6'
-            ]);
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string'
+        ]);
 
-            if(!Auth::attempt($loginFields)){
-                return $this->error('Credentials not match', 401);
-            }
+        $user = User::where('email', $fields['email'])->first();
 
-            $token = $user->createToken('API Token')->plainTextToken;
+        if(!$user || !Hash::check($fields['password'], $user->password)) {
+            return response([
+                'message' => 'Bad creds'
+            ], 401);
+        }
 
-            return  $response = [
-                'user'=>$user,
-                'toke'=>$token
-            ];
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        return $response = [
+            'user' => $user,
+            'token' => $token
+        ];
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DeliveryController;
@@ -33,6 +32,8 @@ Route::prefix('v1')->group(function() {
     // Routes for Login and CreatUser
 
     Route::post('/adduser', [AuthController::class, 'addUser']);
+
+    Route::post('/loginUser', [AuthController::class, 'loginUser']);
 
 });
 
