@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\ProductController;
@@ -12,6 +13,8 @@ use App\Http\Controllers\RegionController;
 use App\Http\Controllers\StateController;
 
 Route::prefix('v1')->group(function() {
+
+    // Default Routes
     
     Route::apiResource('products', ProductController::class);
 
@@ -26,6 +29,10 @@ Route::prefix('v1')->group(function() {
     Route::apiResource('regions', RegionController::class);
 
     Route::apiResource('states',StateController::class);
+
+    // Routes for Login and CreatUser
+
+    Route::post('/adduser', [AuthController::class, 'addUser']);
 
 });
 
