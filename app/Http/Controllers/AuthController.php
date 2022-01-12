@@ -33,9 +33,12 @@ class AuthController extends Controller
             'address' => $userInputFields['address'],
         ]);
 
-        return $this->success([
-            'token' => $user->createToken('API Token')->plainTextToken
-        ]);
+        $token = $user->createToken('API Token')->plainTextToken;
+
+        return  $response = [
+            'user'=>$user,
+            'toke'=>$token
+        ];
 
     }
 }
