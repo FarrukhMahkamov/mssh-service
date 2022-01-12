@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -13,7 +14,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users,email',
             'slug' => 'required|string|unique:users,slug',
-            'image' => 'required',
+            'image' => 'required', 
             'phone_number' => 'required',
             'state_id' => 'required',
             'region_id' => 'required',
@@ -40,5 +41,25 @@ class AuthController extends Controller
             'toke'=>$token
         ];
 
+    }
+
+
+    public function loginUser(Request $request, User $user) {
+        
+            $loginFields = $request->validate([
+                'email' => 'required|string|email|',
+                'password' => 'required|string|min:6'
+            ]);
+
+            if(!Auth::attempt($loginFields)){
+                return $this->error('Credentials not match', 401);
+            }
+
+            $token = $user->createToken('API Token')->plainTextToken;
+
+            return  $response = [
+                'user'=>$user,
+                'toke'=>$token
+            ];
     }
 }
