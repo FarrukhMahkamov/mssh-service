@@ -31,7 +31,6 @@ class RegionController extends Controller
             'slug' => $request->input('slug'),
             'state_id' =>$request->input('state_id')
         ]);
-
         return new RegionResource($region);
     }
 

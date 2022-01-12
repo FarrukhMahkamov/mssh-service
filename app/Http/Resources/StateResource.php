@@ -16,7 +16,7 @@ class StateResource extends JsonResource
     {
         return 
         [
-            'data' => $this->id,
+            'id' => $this->id,
             'type' => 'State',
             'attributes' => 
             [

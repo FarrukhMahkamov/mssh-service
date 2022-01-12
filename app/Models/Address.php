@@ -15,8 +15,9 @@ class Address extends Model
         'region_id',
     ];
 
-    public function region() {
-        return $this->belongsTo(Region::class);
-    }
+    
 
+    public function user() {
+        return $this->hasMany(User::class);
+    }
 }

@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('slug');
+            $table->string('slug')->unique();
+            $table->text('image')->unique();
             $table->integer('phone_number');
             $table->string('state_id');
             $table->string('region_id');
@@ -29,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
     }
-
+ 
     /**
      * Reverse the migrations.
      *
