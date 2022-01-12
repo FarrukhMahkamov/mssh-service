@@ -12,9 +12,9 @@ class AuthController extends Controller
         $userInputFields = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users,email',
-            'slug' => 'required|string|slug|unique:users,slug',
-            'image' => 'required|image',
-        'phone_number' => 'required|number|min:7',
+            'slug' => 'required|string|unique:users,slug',
+            'image' => 'required',
+            'phone_number' => 'required',
             'state_id' => 'required',
             'region_id' => 'required',
             'address' => 'required',
@@ -29,6 +29,7 @@ class AuthController extends Controller
             'image' => $userInputFields['image'],
             'phone_number' => $userInputFields['phone_number'],
             'region_id' => $userInputFields['region_id'],
+            'state_id' => $userInputFields['state_id'],
             'address' => $userInputFields['address'],
         ]);
 
