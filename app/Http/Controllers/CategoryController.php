@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Database\Factories\CategoryFactory;
@@ -25,16 +26,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Category $category)
+    public function store(CategoryRequest $request,Category $category)
     {
-        $faker=\Faker\Factory::create();
         $category=Category::create([
-
-            'name'  => $faker->name(),
-            'slug'  => $faker->slug(),
-            'image' => $faker->imageUrl($width=60 , $height=60),
-        
+            'name'=>$request->input('name'),
+            'slug'=>$request->input(),
+            'image'=>$request->imageUrl($width=60 , $height=60),
             ]) ;
+
         return new CategoryResource($category);      
     }
 
@@ -56,12 +55,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Category $category)
+    public function update(CategoryRequest $request,Category $category)
     {
         $category -> update([
-            'name' => $request  -> input('name'),
-            'slug' => $request  -> input('slug'),
-            'image' => $request -> input('image'),
+            'name'=>$request->input('name'),
+            'slug'=>$request->input('slug'),
+            'image'=>$request->input('image'),
         ]);
         return new CategoryResource($category);
     }
@@ -75,6 +74,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return response(null,404);        
+        return response(null,202);        
     }
 }
