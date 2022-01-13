@@ -30,14 +30,14 @@ class ProductController extends Controller
         $faker = \Faker\Factory::create(2);
 
         $product = Product::create([
-            'name' => $faker->name(),
-            'slug' => $faker->slug(),
-            'brand_id' => $faker->randomDigit(),
-            'size_id' => $faker->randomDigit(),
-            'block_count' => $faker->randomDigit(),
-            'image' => $faker->imageUrl($width  = 60, $heght = 60),
-            'first_price' => $faker->randomDigit(),
-            'second_price' => $faker->randomDigit(),
+            'name' => $request->name(),
+            'slug' => $request->slug(),
+            'brand_id' => $request->randomDigit(),
+            'size_id' => $request->randomDigit(),
+            'block_count' => $request->randomDigit(),
+            'image' => $request->imageUrl($width  = 60, $heght = 60),
+            'first_price' => $request->randomDigit(),
+            'second_price' => $request->randomDigit(),
         ]);
 
         return new ProductResource($product);
