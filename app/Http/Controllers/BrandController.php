@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BrandRequest;
 use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Faker\Factory;
@@ -24,16 +25,16 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Brand $brand)
+    public function store(BrandRequest $request, Brand $brand)
     {
-        $faker = Factory::create(1);
+     
 
         $brand = Brand::create([
-            'name'  => $faker -> name(),
-            'slug'  => $faker -> slug(),
-            'image' => $faker -> imageUrl($width = 60, $height = 60),
-            'category_id' => $faker -> randomDigit(),
-            'delivery_id' => $faker -> randomDigit(),
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+            'image' => $request->input('image'),
+            'category_id' => $request->input('category_id'),
+            'delivery_id' => $request->input('delivery_id'),
         ]);
         return new BrandResource($brand);
     }
@@ -57,14 +58,14 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Brand $brand)
+    public function update(BrandRequest $request,Brand $brand)
     {
         $brand -> update([
-            'name'  => $request -> input('name'),
-            'slug'  => $request -> unput('slug'),
-            'image' => $request  -> input('image'),
-            'category_id' => $request  -> input('category_id'),
-            'delivery_id' => $request  -> input('delivery_id'),
+            'name'=>$request->input('name'),
+            'slug'=>$request-> unput('slug'),
+            'image'=>$request->input('image'),
+            'category_id'=>$request->input('category_id'),
+            'delivery_id'=>$request->input('delivery_id'),
         ]);
         return new BrandResource($brand);
     }
