@@ -7,8 +7,7 @@ use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController; 
 use App\Http\Controllers\RegionController;
-
-
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\StateController;
 
 Route::prefix('v1')->group(function() {
@@ -34,6 +33,8 @@ Route::prefix('v1')->group(function() {
     Route::post('/adduser', [AuthController::class, 'addUser']);
 
     Route::post('/loginUser', [AuthController::class, 'loginUser']);
+
+    Route::apiResource('addresses',AddressController::class);
 
 });
 
