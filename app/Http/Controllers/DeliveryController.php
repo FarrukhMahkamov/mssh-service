@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeliveryRequest;
 use App\Http\Resources\DeliveryResource;
 use App\Models\Delivery;
 use Illuminate\Http\Request;
@@ -24,17 +25,17 @@ class DeliveryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Delivery $delivery)
+    public function store(DeliveryRequest $request, Delivery $delivery)
     {
         $faker = \Faker\Factory::create(2);
 
         $delivery = Delivery::create([
-            'username' => $faker->name(),
-            'username_slug' => $faker->slug(),
-            'user_phone_number' => $faker->randomDigit(),
-            'boss_name' => $faker->name(),
-            'boss_name_slug' => $faker->name(),
-            'boss_phone_number' => 998915,
+            'username'=>$request->input('username'),
+            'username_slug'=>$request->input('username_slug'),
+            'user_phone_number'=>$request->input('user_phone_number'),
+            'boss_name'=>$request->input('boss_name'),
+            'boss_name_slug'=>$request->input('boss_name_slug'),
+            'boss_phone_number'=>$request->input('boss_phone_number'),
         ]);
 
         return new DeliveryResource($delivery);
@@ -58,7 +59,7 @@ class DeliveryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Delivery $delivery)
+    public function update(DeliveryRequest $request, Delivery $delivery)
     {
         $delivery->update([
             'username' => $request->input('username'),
