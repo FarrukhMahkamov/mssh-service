@@ -15,6 +15,9 @@ class CreateConsumptionsTable extends Migration
     {
         Schema::create('consumptions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->foreignId('consumption_category_id');
             $table->timestamps();
         });
     }

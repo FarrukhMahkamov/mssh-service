@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ConsumptionCategory extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'slug'
+    ];
+
+    public function consumption() {
+        return $this->hasMany(Consumption::class);
+    }
 }

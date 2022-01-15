@@ -28,6 +28,8 @@ Route::prefix('v1')->group(function() {
 
     Route::apiResource('states',StateController::class);
 
+    Route::apiResource('consumption-categories');
+
     // Routes for Login and CreatUser
 
     Route::post('/adduser', [AuthController::class, 'addUser']);
