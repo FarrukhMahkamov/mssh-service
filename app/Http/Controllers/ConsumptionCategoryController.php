@@ -27,10 +27,9 @@ class ConsumptionCategoryController extends Controller
      */
     public function store(ConsumptionCategory $consumptionCategory, ConsumptionCategoryRequest $request)
     {
-        $consumptionCategory::create([
-            'name' => $request->input('name'),
-            'slug' => $request->input('slug')
-        ]);
+       $consumptionCategory = $consumptionCategory::create($request->all());
+
+        return new ConsumptionCategoryResource($consumptionCategory);
     }
 
     /**
@@ -53,10 +52,9 @@ class ConsumptionCategoryController extends Controller
      */
     public function update(ConsumptionCategory $consumptionCategory, ConsumptionCategoryRequest $request)
     {
-        $consumptionCategory->update([
-            'name' => $request->input('name'),
-            'slug' => $request->input('slug')
-        ]);
+       $consumptionCategory = $consumptionCategory->update($request->all());
+
+        return new ConsumptionCategoryResource($consumptionCategory);
     }
 
     /**
