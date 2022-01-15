@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StateRequest;
 use App\Http\Resources\StateResource;
 use App\Models\State;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class StateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , State $state)
+    public function store(StateRequest $request , State $state)
     {
         
         $state=State::create([
@@ -53,7 +54,7 @@ class StateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,State $state)
+    public function update(StateRequest $request,State $state)
     {
         $state -> update([
             'name'=>$request->input('name'),
