@@ -26,15 +26,15 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request,Category $category)
+    public function store(CategoryRequest $request, Category $category)
     {
         $category=Category::create([
             'name'=>$request->input('name'),
             'slug'=>$request->input(),
-            'image'=>$request->imageUrl($width=60 , $height=60),
+            'image'=>$request->imageUrl($width=60, $height=60),
             ]) ;
 
-        return new CategoryResource($category);      
+        return new CategoryResource($category);
     }
 
     /**
@@ -55,7 +55,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request,Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category -> update([
             'name'=>$request->input('name'),
@@ -74,6 +74,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return response(null,202);        
+        return response(null, 202);
     }
 }
