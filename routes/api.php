@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController; 
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\StateController;
+use App\Models\ConsumptionCategory;
 
 Route::prefix('v1')->group(function() {
 
@@ -28,7 +30,9 @@ Route::prefix('v1')->group(function() {
 
     Route::apiResource('states',StateController::class);
 
-    Route::apiResource('consumption-categories');
+    Route::apiResource('consumption-categories', ConsumptionCategory::class);
+
+    Route::apiResource('consumption', ConsumptionController::class);
 
     // Routes for Login and CreatUser
 
