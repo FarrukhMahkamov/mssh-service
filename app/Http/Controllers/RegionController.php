@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\RegionResource;
+use App\Http\Requests\RegionRequest;
 use App\Models\Region;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class RegionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Region $region)
+    public function store(RegionRequest $request, Region $region)
     {
         $region = Region::create([
             'name' => $request->input('name'),
@@ -52,7 +53,7 @@ class RegionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Region $region)
+    public function update(RegionRequest $request, Region $region)
     {
         $region->update([
             'name' => $request->input('name'),
