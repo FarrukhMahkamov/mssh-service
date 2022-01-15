@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\SizeResource;
 use App\Models\Size;
 use Illuminate\Http\Request;
+use App\Http\Requests\SizeRequest;
 
 class SizeController extends Controller
 {
@@ -29,13 +30,12 @@ class SizeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Size $size)
+    public function store(SizeRequest $request, Size $size)
     {
-        $faker = \Faker\Factory::create(1);
 
         $size = Size::create([
-            'name' => $faker->name(),
-            'slug' => $faker->slug(),
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
         ]);
 
         return new SizeResource($size);
@@ -48,7 +48,7 @@ class SizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Size $size)
+    public function update(SizeRequest $request, Size $size)
     {
         $size->update([
             'name' => $request->input('name'),
