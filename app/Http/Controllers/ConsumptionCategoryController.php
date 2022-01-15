@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConsumptionCategoryRequest;
+use App\Http\Resources\ConsumptionCategoryResource;
+use App\Models\ConsumptionCategory;
 use Illuminate\Http\Request;
 
 class ConsumptionCategoryController extends Controller
@@ -11,9 +14,9 @@ class ConsumptionCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ConsumptionCategory $consumptionCategory)
     {
-        
+       return ConsumptionCategoryResource::collection(ConsumptionCategory::all());
     }
 
     /**
@@ -22,9 +25,12 @@ class ConsumptionCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConsumptionCategory $consumptionCategory, ConsumptionCategoryRequest $request)
     {
-        
+        $consumptionCategory::create([
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug')
+        ]);
     }
 
     /**
@@ -33,9 +39,9 @@ class ConsumptionCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ConsumptionCategory $consumptionCategory)
     {
-        //
+        return new ConsumptionCategoryResource($consumptionCategory);
     }
 
     /**
@@ -45,9 +51,12 @@ class ConsumptionCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ConsumptionCategory $consumptionCategory, ConsumptionCategoryRequest $request)
     {
-        //
+        $consumptionCategory->update([
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug')
+        ]);
     }
 
     /**
@@ -56,8 +65,9 @@ class ConsumptionCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ConsumptionCategory $consumptionCategory)
     {
-        //
+        $consumptionCategory->delete();
+        return response(null, 204);
     }
 }
