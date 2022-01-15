@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -15,7 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection(Product::all());
+        return ProductResource::collection(Cache::remember('products', 60*60*24, function(){
+            return Product::all();
+        } ));
     }
 
 
@@ -25,19 +29,18 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Product $product)
+    public function store(ProductRequest $request, Product $product)
     {
-        $faker = \Faker\Factory::create(2);
 
         $product = Product::create([
-            'name' => $request->name(),
-            'slug' => $request->slug(),
-            'brand_id' => $request->randomDigit(),
-            'size_id' => $request->randomDigit(),
-            'block_count' => $request->randomDigit(),
-            'image' => $request->imageUrl($width  = 60, $heght = 60),
-            'first_price' => $request->randomDigit(),
-            'second_price' => $request->randomDigit(),
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+            'brand_id' => $request->input('brand_id'),
+            'size_id' => $request->input('size_id'),
+            'block_count' => $request->input('block_count'),
+            'image' => $request->input('image'),
+            'first_price' => $request->input('first_price'),
+            'second_price' => $request->input('second_price'),
         ]);
 
         return new ProductResource($product);
@@ -61,7 +64,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         $product->update([
             'name' => $request->input('name'),
