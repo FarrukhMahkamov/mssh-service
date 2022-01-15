@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConsumptionRequest;
+use App\Http\Resources\ConsumptionResource;
+use App\Models\Consumption;
 use Illuminate\Http\Request;
+
+use function GuzzleHttp\Promise\all;
 
 class ConsumptionController extends Controller
 {
@@ -11,9 +16,9 @@ class ConsumptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Consumption $consumption)
     {
-        //
+        return ConsumptionResource::collection(Consumption::all());
     }
 
     /**
@@ -22,9 +27,11 @@ class ConsumptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Consumption $consumption ,ConsumptionRequest $request)
     {
-        //
+        $consumption = $consumption->create($request->all());
+
+        return new ConsumptionResource($consumption);
     }
 
     /**
@@ -33,9 +40,9 @@ class ConsumptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Consumption $consumption)
     {
-        //
+        return new ConsumptionResource($consumption);
     }
 
     /**
@@ -45,9 +52,11 @@ class ConsumptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Consumption $consumption, ConsumptionRequest $request)
     {
-        //
+        $consumption = $consumption->update($request->all());
+
+        return new ConsumptionResource($consumption);
     }
 
     /**
@@ -56,8 +65,10 @@ class ConsumptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Consumption $consumption)
     {
-        //
+        $consumption->delete();
+
+        return response(null, 204);
     }
 }
