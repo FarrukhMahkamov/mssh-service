@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         $category=Category::create([
             'name'=>$request->input('name'),
-            'slug'=>$request->input(),
+            'slug'=>$request->input('slug'),
             'image'=>$request->imageUrl($width=60, $height=60),
             ]) ;
 
