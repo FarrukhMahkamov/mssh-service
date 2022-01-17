@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Size;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SizeFactory extends Factory
@@ -11,10 +12,14 @@ class SizeFactory extends Factory
      *
      * @return array
      */
+
+    protected $model = Size::class;
+
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'slug' => $this->faker->slug(),
         ];
     }
 }

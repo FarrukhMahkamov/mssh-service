@@ -21,11 +21,11 @@ class Product extends Model
     ];
 
     public function size() {
-        $this->belongsTo(Size::class);
+        return $this->belongsTo(Size::class);
     }
 
     public function brand() {
-        $this->belongsTo(Brend::class);
+       return $this->belongsTo(Brand::class);
     }
 
 }
