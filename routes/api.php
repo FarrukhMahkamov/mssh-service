@@ -5,22 +5,21 @@ use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController; 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ConsumptionCategoryController;
 use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\StateController;
-use App\Models\ConsumptionCategory;
 
 Route::prefix('v1')->group(function() {
 
     // Default Routes
-    
+
     Route::apiResource('products', ProductController::class);
 
     Route::apiResource('sizes', SizeController::class);
-    
+
     Route::apiResource('deliveries', DeliveryController::class);
 
     Route::apiResource('brands',BrandController::class);

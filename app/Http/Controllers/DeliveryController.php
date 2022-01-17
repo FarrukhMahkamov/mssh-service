@@ -27,16 +27,8 @@ class DeliveryController extends Controller
      */
     public function store(DeliveryRequest $request, Delivery $delivery)
     {
-        $faker = \Faker\Factory::create(2);
 
-        $delivery = Delivery::create([
-            'username'=>$request->input('username'),
-            'username_slug'=>$request->input('username_slug'),
-            'user_phone_number'=>$request->input('user_phone_number'),
-            'boss_name'=>$request->input('boss_name'),
-            'boss_name_slug'=>$request->input('boss_name_slug'),
-            'boss_phone_number'=>$request->input('boss_phone_number'),
-        ]);
+        $delivery = Delivery::create($request->all());
 
         return new DeliveryResource($delivery);
     }
@@ -61,14 +53,7 @@ class DeliveryController extends Controller
      */
     public function update(DeliveryRequest $request, Delivery $delivery)
     {
-        $delivery->update([
-            'username' => $request->input('username'),
-            'username_slug' => $request->input('username_slug'),
-            'user_phone_number' => $request->input('user_phone_number'),
-            'boss_name' => $request->input('boss_name'),
-            'boss_name_slug' => $request->input('boss_name_slug'),
-            'boss_phone_number' => $request->input('boss_phone_number'),
-        ]);
+        $delivery->update($request->all());
 
         return new DeliveryResource($delivery);
     }
