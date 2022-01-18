@@ -20,7 +20,7 @@ class BrandFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'slug' => $this->faker->slug(),
-            'category_id' => $this->faker->randomDigit(),
+            'category_id' => CategoryFactory::class,
             'delivery_id' => $this->faker->randomDigit(),
             'image' => $this->faker->imageUrl($width = 60, $height = 60)
         ];
