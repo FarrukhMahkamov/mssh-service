@@ -8,8 +8,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
-use function GuzzleHttp\Promise\all;
-
 class ProductController extends Controller
 {
     /**
@@ -33,8 +31,16 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request, Product $product)
     {
-        
-        $product = Product::create($request->all());
+        $product = Product::create([
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+            'brand_id' => $request->input('brand_id'),
+            'size_id' => $request->input('size_id'),
+            'block_count' => $request->input('block_count'),
+            'image' => $request->file('image')->store('public/images/products'),
+            'first_price' => $request->input('first_price'),
+            'second_price' => $request->input('second_price'),
+        ]);
 
         return new ProductResource($product);
     }
