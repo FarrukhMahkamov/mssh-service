@@ -16,6 +16,6 @@ class Category extends Model
     ];
 
     public function category() {
-        $this->hasMany(Brand::class);
+       return $this->hasMany(Brand::class);
     }
 }

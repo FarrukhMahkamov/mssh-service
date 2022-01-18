@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Brand;
+use App\Models\Delivery;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BrandFactory extends Factory
@@ -20,8 +21,8 @@ class BrandFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'slug' => $this->faker->slug(),
-            'category_id' => CategoryFactory::class,
-            'delivery_id' => $this->faker->randomDigit(),
+            'category_id' => Category::class,
+            'delivery_id' => Delivery::class,
             'image' => $this->faker->imageUrl($width = 60, $height = 60)
         ];
     }

@@ -15,10 +15,10 @@ class CategoryFactory extends Factory
 
     public function definition()
     {
-        return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
-            'image' => $this->faker->imageUrl($with = 60 , $height=60 ),
-        ];
+        // return [
+        //     'name' => $this->faker->name(),
+        //     'slug' => $this->faker->slug(),
+        //     'image' => $this->faker->imageUrl($with = 60 , $height=60 ),
+        // ];
     }
 }

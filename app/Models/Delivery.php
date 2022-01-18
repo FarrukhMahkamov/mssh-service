@@ -16,4 +16,9 @@ class Delivery extends Model
         'boss_phone_number',
     ];
     use HasFactory;
+
+    public function brand() {
+        return $this->hasMany(Brand::class);
+    }
+
 }
