@@ -16,7 +16,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-      return BrandResource::collection(Brand::all());
+      return BrandResource::collection(Brand::paginate(20));
     }
 
     /**
@@ -27,12 +27,10 @@ class BrandController extends Controller
      */
     public function store(BrandRequest $request, Brand $brand)
     {
-     
-
         $brand = Brand::create([
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
-            'image' => $request->input('image'),
+            'image' => $request->file('image')->store('public/images/brands'),
             'category_id' => $request->input('category_id'),
             'delivery_id' => $request->input('delivery_id'),
         ]);

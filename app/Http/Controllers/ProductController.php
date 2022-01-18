@@ -38,7 +38,7 @@ class ProductController extends Controller
             'brand_id' => $request->input('brand_id'),
             'size_id' => $request->input('size_id'),
             'block_count' => $request->input('block_count'),
-            'image' => $request->input('image'),
+            'image' => $request->file('image')->store('public/images/products'),
             'first_price' => $request->input('first_price'),
             'second_price' => $request->input('second_price'),
         ]);

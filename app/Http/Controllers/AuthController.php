@@ -28,7 +28,7 @@ class AuthController extends Controller
             'password' => bcrypt($userInputFields['password']),
             'email' => $userInputFields['email'],
             'slug' => $userInputFields['slug'],
-            'image' => $userInputFields['image'],
+            'image' => $userInputFields['image']->store('public/images/profile'),
             'phone_number' => $userInputFields['phone_number'],
             'region_id' => $userInputFields['region_id'],
             'state_id' => $userInputFields['state_id'],
