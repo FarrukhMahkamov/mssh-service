@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         return ProductResource::collection(Cache::remember('products', 60*60*24, function(){
-            return Product::all();
+            return Product::paginate(20);
         } ));
     }
 
