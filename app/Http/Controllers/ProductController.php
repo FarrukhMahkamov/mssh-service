@@ -20,8 +20,6 @@ class ProductController extends Controller
         return ProductResource::collection(Cache::remember('products', 60*60*24, function(){
             return Product::with('size', 'brand')->paginate(10);
         } ));
-
-        // return ProductResource::collection(Product::all());
     }
 
 
