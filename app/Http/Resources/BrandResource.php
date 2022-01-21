@@ -20,8 +20,8 @@ class BrandResource extends JsonResource
             'attributes' => [
                 'name' => $this->name,
                 'slug' => $this->slug,
-                'category_id'=>$this->category_id,
-                'delivery_id'=>$this->delivery_id,
+                'category_id'=>$this->category->name,
+                'delivery_id'=>$this->delivery->username,
                 'image'=>$this->image,
            
             ]

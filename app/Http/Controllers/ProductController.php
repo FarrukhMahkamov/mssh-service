@@ -18,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         return ProductResource::collection(Cache::remember('products', 60*60*24, function(){
-            return Product::with('size', 'brand')->paginate(10);
+            return Product::with('size', 'brand')->get();
+            // return Product::all();
         } ));
     }
 
@@ -71,7 +72,7 @@ class ProductController extends Controller
             'brand_id' => $request->input('brand_id'),
             'size_id' => $request->input('size_id'),
             'block_count' => $request->input('block_count'),
-            'image' => $request->input('image'),
+            'image' => $request->input('image')->store('public/images/products'),
             'first_price' => $request->input('first_price'),
             'second_price' => $request->input('second_price'),
         ]);

@@ -16,7 +16,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-      return BrandResource::collection(Brand::paginate(20));
+      return BrandResource::collection(Brand::with('category', 'delivery')->get());
     }
 
     /**
