@@ -57,4 +57,8 @@ class User extends Authenticatable
         return $this->belongsTo(State::class);
     }
 
+    public function delivery() {
+        return $this->hasMany(Delivery::class);
+    }
+
 }

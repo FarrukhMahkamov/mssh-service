@@ -21,4 +21,8 @@ class Delivery extends Model
         return $this->hasMany(Brand::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
 }

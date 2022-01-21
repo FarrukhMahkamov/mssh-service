@@ -19,6 +19,7 @@ class AuthController extends Controller
             'phone_number' => 'required',
             'state_id' => 'required',
             'region_id' => 'required',
+            'user_role' => 'required',
             'address' => 'required',
             'password' => 'required|string|min:6|confirmed'
         ]);
@@ -33,6 +34,7 @@ class AuthController extends Controller
             'region_id' => $userInputFields['region_id'],
             'state_id' => $userInputFields['state_id'],
             'address' => $userInputFields['address'],
+            'user_role' => $userInputFields['user_role']
         ]);
 
         $token = $user->createToken('API Token')->plainTextToken;

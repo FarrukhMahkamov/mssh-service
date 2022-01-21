@@ -7,6 +7,8 @@ use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Faker\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+
 class BrandController extends Controller
 {
     /**
@@ -16,7 +18,11 @@ class BrandController extends Controller
      */
     public function index()
     {
-      return BrandResource::collection(Brand::with('category', 'delivery')->get());
+        
+      return BrandResource::collection(Cache::remember('brands', 60*60*24, function() {
+        return Brand::with('category', 'delivery')->get();
+      }));
+
     }
 
     /**
