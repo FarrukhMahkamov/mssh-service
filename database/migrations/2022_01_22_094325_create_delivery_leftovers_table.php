@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeliveriesLeftoverTable extends Migration
+class CreateDeliveryLeftoversTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateDeliveriesLeftoverTable extends Migration
      */
     public function up()
     {
-        Schema::create('deliveries_leftover', function (Blueprint $table) {
+        Schema::create('delivery_leftovers', function (Blueprint $table) {
             $table->id();
             $table->string('data');
+            $table->string('slug');
             $table->string('document');
             $table->string('type');
             $table->integer('user_id');
@@ -30,6 +31,6 @@ class CreateDeliveriesLeftoverTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deliveries_leftover');
+        Schema::dropIfExists('delivery_leftovers');
     }
 }
