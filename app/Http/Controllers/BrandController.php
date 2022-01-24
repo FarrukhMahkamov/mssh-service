@@ -14,11 +14,11 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        
+
       return BrandResource::collection(Cache::remember('brands', 60*60*24, function() {
         return Brand::with('category', 'delivery')->get();
       }));
@@ -29,9 +29,9 @@ class BrandController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return BrandResource
      */
-    public function store(BrandRequest $request, Brand $brand)
+    public function store(BrandRequest $request, Brand $brand): BrandResource
     {
         $brand = Brand::create([
             'name' => $request->input('name'),
@@ -52,7 +52,7 @@ class BrandController extends Controller
     public function show(Brand $brand)
     {
         return new BrandResource($brand);
-        
+
     }
 
     /**
