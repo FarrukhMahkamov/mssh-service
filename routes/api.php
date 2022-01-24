@@ -12,6 +12,9 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ConsumptionCategoryController;
 use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\DeliveryLeftoverController;
+use App\Http\Controllers\ProductCreamController;
+use App\Models\ProductCream;
 
 Route::prefix('v1')->group(function() {
 
@@ -42,6 +45,11 @@ Route::prefix('v1')->group(function() {
     Route::post('/loginUser', [AuthController::class, 'loginUser']);
 
     Route::apiResource('addresses',AddressController::class);
+
+    Route::apiResource('delivery-leftovers',DeliveryLeftoverController::class);
+
+    Route::apiResource('product-creams',ProductCream::class);
+ 
 
 });
 

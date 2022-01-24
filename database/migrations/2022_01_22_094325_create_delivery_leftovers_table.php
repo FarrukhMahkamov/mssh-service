@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateDeliveryLeftoversTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('delivery_leftovers', function (Blueprint $table) {
             $table->id();
-            $table->string('date');
-            $table->string('client');
-            $table->string('agent');
-            $table->string('duty');
-            $table->string('duty1');
+            $table->string('data');
+            $table->string('slug');
+            $table->string('document');
+            $table->string('type');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('delivery_leftovers');
     }
 }
